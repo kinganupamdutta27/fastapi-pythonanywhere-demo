@@ -2,13 +2,21 @@ from fastapi import FastAPI
 from contextlib import asynccontextmanager
 
 @asynccontextmanager
-async def lifespan(app:FastAPI):
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     try:
+        # Startup logic
+        print("Application starting...")
 
         yield
 
-    except Exception as e:
-        pass
+    except Exception:
+        print("Application startup/runtime failure")
+        raise
+
+    finally:
+        # Shutdown logic
+        print("Application shutting down...")
 
 app = FastAPI(
     title="FastAPI-Demo-PythonAnywhere", 
