@@ -1,9 +1,10 @@
 from fastapi import FastAPI
+from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
 @asynccontextmanager
-@asynccontextmanager
-async def lifespan(app: FastAPI):
+async def lifespan(app: FastAPI)->AsyncIterator[None]:
+    print("Application Start UP")
     try:
         # Startup logic
         print("Application starting...")
